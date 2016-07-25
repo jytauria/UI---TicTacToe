@@ -20,7 +20,7 @@ namespace UI___TicTacToe
         private void button1_Click(object sender, EventArgs e)
         {
             Form1.setPlayerNames(p1.Text, p2.Text);
-            Form1.computer();
+            
             this.Close();
 
         }
@@ -35,7 +35,7 @@ namespace UI___TicTacToe
         {
             p2.Text = "";
             p2.Enabled = true;
-            Form1.computer_turn = false;
+            
         }
 
         private void radio_button1(object sender, EventArgs e)
@@ -43,8 +43,13 @@ namespace UI___TicTacToe
             
             p2.Text = "Computer";
             p2.Enabled = false;
-            Form1.computer_turn = true;
-
+            Form1.complayer = true;
+            
+        }
+        private void p1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.ToString() == "\r")
+                button1.PerformClick();
         }
     }
 }

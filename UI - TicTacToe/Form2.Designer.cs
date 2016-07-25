@@ -64,6 +64,7 @@
             this.p1.Name = "p1";
             this.p1.Size = new System.Drawing.Size(256, 26);
             this.p1.TabIndex = 2;
+            this.p1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.p1_KeyPress);
             // 
             // p2
             // 

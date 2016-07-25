@@ -12,10 +12,14 @@ namespace UI___TicTacToe
 {
     public partial class Form1 : Form
     {
-        bool turn = true; // true = X turn; false = Y turn
+        
+        bool turn = true; // true = X turn; false = O turn
+        public static bool complayer = false;
+        bool comStart = false;
         int turn_count = 0;
+        bool turnChange = false;
         static String player1, player2;
-        public static bool computer_turn = false;
+        
 
         public Form1()
         {
@@ -39,13 +43,189 @@ namespace UI___TicTacToe
             Application.Exit();
         }
 
-        public static void computer()
-        {
+        void computer()
+         {
+            if (complayer)
+            {
+                turn = !turn;
+                // is there two in first row?
+                if ((!A1.Enabled) && (!A2.Enabled) && (A1.Text == A2.Text) && (A3.Enabled)) 
+                {
+                    A3.Text = "O";
+                    A3.Enabled = false;
+                }
+                else if ((!A2.Enabled) && (!A3.Enabled) && (A2.Text == A3.Text) && (A1.Enabled))
+                {
+                    A1.Text = "O";
+                    A1.Enabled = false;
+                }
+                else if ((!A1.Enabled) && (!A3.Enabled) && (A1.Text == A3.Text) && (A2.Enabled))
+                {
+                    A2.Text = "O";
+                    A2.Enabled = false;
+                }
+                // is there two in second row?
+                else if ((!B1.Enabled) && (!B2.Enabled) && (B1.Text == B2.Text) && (B3.Enabled))
+                {
+                    B3.Text = "O";
+                    B3.Enabled = false;
+                }
+                else if ((!B2.Enabled) && (!B3.Enabled) && (B2.Text == B3.Text) && (B1.Enabled))
+                {
+                    B1.Text = "O";
+                    B1.Enabled = false;
+                }
+                else if ((!B1.Enabled) && (!B3.Enabled) && (B1.Text == B3.Text) && (B2.Enabled))
+                {
+                    B2.Text = "O";
+                    B2.Enabled = false;
+                }
+                // is there two in third row?
+                else if ((!C1.Enabled) && (!C2.Enabled) && (C1.Text == C2.Text) && (C3.Enabled))
+                {
+                    C3.Text = "O";
+                    C3.Enabled = false;
+                }
+                else if ((!C2.Enabled) && (!C3.Enabled) && (C2.Text == C3.Text) && (C1.Enabled))
+                {
+                    C1.Text = "O";
+                    C1.Enabled = false;
+                }
+                else if ((!C1.Enabled) && (!C3.Enabled) && (C1.Text == C3.Text) && (C2.Enabled))
+                {
+                    C2.Text = "O";
+                    C2.Enabled = false;
+                }
+                // is there two in 1 column?
+                else if ((!A1.Enabled) && (!B1.Enabled) && (A1.Text == B1.Text) && (C1.Enabled))
+                {
+                    C1.Text = "O";
+                    C1.Enabled = false;
+                }
+                else if ((!B1.Enabled) && (!C1.Enabled) && (B1.Text == C1.Text) && (A1.Enabled))
+                {
+                    A1.Text = "O";
+                    A1.Enabled = false;
+                }
+                else if ((!A1.Enabled) && (!C1.Enabled) && (A1.Text == C1.Text) && (B1.Enabled))
+                {
+                    B1.Text = "O";
+                    B1.Enabled = false;
+                }
+                // is there two in 2 column?
+                else if ((!A2.Enabled) && (!B2.Enabled) && (A2.Text == B2.Text) && (C2.Enabled))
+                {
+                    C2.Text = "O";
+                    C2.Enabled = false;
+                }
+                else if ((!B2.Enabled) && (!C2.Enabled) && (B2.Text == C2.Text) && (A2.Enabled))
+                {
+                    A2.Text = "O";
+                    A2.Enabled = false;
+                }
+                else if ((!A2.Enabled) && (!C2.Enabled) && (A2.Text == C2.Text) && (B2.Enabled))
+                {
+                    B2.Text = "O";
+                    B2.Enabled = false;
+                }
+                // is there two in 3 column?
+                else if ((!A3.Enabled) && (!B3.Enabled) && (A3.Text == B3.Text) && (C3.Enabled))
+                {
+                    C3.Text = "O";
+                    C3.Enabled = false;
+                }
+                else if ((!B3.Enabled) && (!C3.Enabled) && (B3.Text == C3.Text) && (A3.Enabled))
+                {
+                    A3.Text = "O";
+                    A3.Enabled = false;
+                }
+                else if ((!A3.Enabled) && (!C3.Enabled) && (A3.Text == C3.Text) && (B3.Enabled))
+                {
+                    B3.Text = "O";
+                    B3.Enabled = false;
+                }
+                // Diagonal Checks - A1 - C3
+                else if ((!A1.Enabled) && (!B2.Enabled) && (A1.Text == B2.Text) && (C3.Enabled))
+                {
+                    C3.Text = "O";
+                    C3.Enabled = false;
+                }
+                else if ((!B2.Enabled) && (!C3.Enabled) && (B2.Text == C3.Text) && (A1.Enabled))
+                {
+                    A1.Text = "O";
+                    A1.Enabled = false;
+                }
+                else if ((!A1.Enabled) && (!C3.Enabled) && (A1.Text == C3.Text) && (B2.Enabled))
+                {
+                    B2.Text = "O";
+                    B2.Enabled = false;
+                }
+                // Diagonal Checks - A3 - C1
+                else if ((!A3.Enabled) && (!B2.Enabled) && (A3.Text == B2.Text) && (C1.Enabled))
+                {
+                    C1.Text = "O";
+                    C1.Enabled = false;
+                }
+                else if (!(B2.Enabled) && (!C1.Enabled) && (B2.Text == C1.Text) && (A3.Enabled))
+                {
+                    A3.Text = "O";
+                    A3.Enabled = false;
+                }
+                else if ((A3.Enabled == C1.Enabled) && (A3.Text == C1.Text) && (B2.Enabled))
+                {
+                    B2.Text = "O";
+                    B2.Enabled = false;
+                }
+                                
 
-            if (computer_turn == true)
-                Form1.A1.Text = "G";
-                Pre
-                               
+                // let add random?
+                else if (A1.Enabled)
+                {
+                    A1.Text = "O";
+                    A1.Enabled = false;
+                }
+                else if (A2.Enabled)
+                {
+                    A2.Text = "O";
+                    A2.Enabled = false;
+                }
+                else if (A3.Enabled)
+                {
+                    A3.Text = "O";
+                    A3.Enabled = false;
+                }
+                else if (B3.Enabled)
+                {
+                    B3.Text = "O";
+                    B3.Enabled = false;
+                }
+                else if (B2.Enabled)
+                {
+                    B2.Text = "O";
+                    B2.Enabled = false;
+                }
+                else if (B1.Enabled)
+                {
+                    B1.Text = "O";
+                    B1.Enabled = false;
+                }
+                else if (C3.Enabled)
+                {
+                    C3.Text = "O";
+                    C3.Enabled = false;
+                }
+                else if (C2.Enabled)
+                {
+                    C2.Text = "O";
+                    C2.Enabled = false;
+                }
+                else if (C1.Enabled)
+                {
+                    C1.Text = "O";
+                    C1.Enabled = false;
+                }
+                turn_count++;
+            }
         }
 
         private void button_click(object sender, EventArgs e)
@@ -58,10 +238,17 @@ namespace UI___TicTacToe
             turn = !turn;
             b.Enabled = false;
             turn_count++;
-            checkForWinner();
+            bool winner = checkForWinner();
+            if ((!winner) && (turn_count != 9))
+            {
+                computer();
+                checkForWinner();
+            }
+            
+                
         }
 
-        private void checkForWinner()
+        public bool checkForWinner()
         {
             bool there_is_a_winner = false;
 
@@ -104,6 +291,7 @@ namespace UI___TicTacToe
                     x_win_count.Text = (Int32.Parse(x_win_count.Text) + 1).ToString();
                 }
                 MessageBox.Show(winner + " Wins!", "JIIHAA!");
+                
             }//end If
             else
             {
@@ -113,28 +301,35 @@ namespace UI___TicTacToe
                     MessageBox.Show("Tie!", "OH!");
                 }
             }
-
+            return (there_is_a_winner);
         }//end checkForWinner
 
         private void disableButtons()
         {
-            try
+            foreach(Control c in Controls)
             {
-                foreach (Control c in Controls)
+                try
                 {
+                              
                     Button b = (Button)c;
                     b.Enabled = false;
-
-                }//end foreach
-            }//end of try
-            catch { }
-        }
+                }//end of try
+                catch { }
+            }
+        }//end foreach           
+            
 
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            turn = true;
+            
             turn_count = 0;
-           
+            turnChange = !turnChange;
+            if (turnChange)
+            {
+                turn = false; // O Turn to start the new game
+            }
+            else turn = true; // X Trun to start the new game
+
             foreach (Control c in Controls)
             {
                 try
@@ -145,7 +340,16 @@ namespace UI___TicTacToe
                 }//end of try
                 catch { }
             }//end foreach
-                      
+            if (complayer)
+            {
+                comStart = !comStart;
+                if (comStart)
+                {
+                    turn = false;
+                    computer();
+                }
+            }
+            
         }
 
         private void button_enter(object sender, EventArgs e)
